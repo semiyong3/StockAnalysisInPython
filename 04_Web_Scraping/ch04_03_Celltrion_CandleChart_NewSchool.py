@@ -14,7 +14,8 @@ df = pd.DataFrame()
 sise_url = 'https://finance.naver.com/item/sise_day.nhn?code=068270'  
 for page in range(1, int(last_page)+1): 
     page_url = '{}&page={}'.format(sise_url, page)  
-    df = df.append(pd.read_html(page_url, header=0)[0])
+    # df = df.append(pd.read_html(html, header=0)[0])
+    df = pd.concat([df, pd.read_html(html, header=0)[0]])
 
 df = df.dropna()
 df = df.iloc[0:30]
